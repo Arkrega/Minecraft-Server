@@ -1,0 +1,17 @@
+{
+  "name": "Bot AFK Server Minecraft",
+  "version": "1.0.0",
+  "description": "Cuman AFK biar gak mati servernya",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "author": "ArkRega",
+  "license": "ISC",
+  "dependencies": {
+    "mineflayer": "latest"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
