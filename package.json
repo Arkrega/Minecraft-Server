@@ -1,17 +1,17 @@
 {
-  "name": "Bot AFK Server Minecraft",
+  "name": "mc-bot-choreo",
   "version": "1.0.0",
-  "description": "Cuman AFK biar gak mati servernya",
-  "main": "index.js",
+  "description": "Minecraft Bot for Choreo",
+  "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
   },
-  "author": "ArkRega",
-  "license": "ISC",
-  "dependencies": {
-    "mineflayer": "latest"
-  },
   "engines": {
-    "node": "20.x"
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mineflayer": "^4.20.0",
+    "mineflayer-pathfinder": "^2.4.0"
   }
 }
