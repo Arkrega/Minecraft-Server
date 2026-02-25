@@ -14,18 +14,23 @@ app.listen(PORT, '0.0.0.0', () => {
 })
 
 const botArgs = {
-  host: 'mother-elsewhere.gl.joinmc.link',
-  port: 25565,
-  username: 'RegaBot'
+  host: '147.185.221.28',
+  port: 17730,
+  username: 'RegaBot',
+  version: '1.21'
 }
 
 let bot
 let sedangProsesTidur = false
 const pesanRandom = [
+  'Lagi afk bentar ya guys',
+  'Servernya seru juga nih',
   'Alpine dan Farma kacung arka doang njir',
   'Alpine epeop',
   'Gw gak di ajak kah?',
-  'Keren banget bangunan di sini'
+  'Rega lagi di mana ya?',
+  'Wah mapnya luas banget',
+  'Ada yang mau trade barang?'
 ]
 
 function createBot() {
@@ -34,7 +39,7 @@ function createBot() {
   bot.loadPlugin(pathfinder)
 
   bot.on('spawn', () => {
-    console.log('Bot spawned in world')
+    console.log('STATUS: Bot berhasil masuk ke server')
     const defaultMove = new Movements(bot)
     bot.pathfinder.setMovements(defaultMove)
     sedangProsesTidur = false
@@ -81,22 +86,22 @@ function createBot() {
 
   bot.on('sleep', () => {
     sedangProsesTidur = true
-    console.log('Bot sedang tidur')
+    console.log('INFO: Bot sedang tidur')
   })
 
   bot.on('kicked', (reason) => {
-    console.log(`Kicked: ${reason}`)
-    setTimeout(createBot, 5000)
+    console.log('LOG: Bot dikeluarkan. Alasan: ' + reason)
+    setTimeout(createBot, 10000)
   })
 
   bot.on('error', (err) => {
-    console.log(`Error: ${err.message}`)
-    setTimeout(createBot, 5000)
+    console.log('ERROR: Terjadi masalah koneksi: ' + err.message)
+    setTimeout(createBot, 10000)
   })
 
   bot.on('end', () => {
-    console.log('Connection ended')
-    setTimeout(createBot, 5000)
+    console.log('LOG: Koneksi terputus. Mencoba masuk kembali...')
+    setTimeout(createBot, 10000)
   })
 }
 
@@ -112,7 +117,7 @@ function startAntiAFK() {
   setInterval(() => {
     if (bot.pathfinder.isMoving() || bot.isSleeping || sedangProsesTidur) return
     
-    const aksi = Math.floor(Math.random() * 6)
+    const aksi = Math.floor(Math.random() * 8)
     
     if (aksi === 0) {
       const yaw = Math.random() * Math.PI * 2
@@ -136,6 +141,12 @@ function startAntiAFK() {
         bot.setControlState('back', true)
         setTimeout(() => bot.setControlState('back', false), 500)
       }, 500)
+    } else if (aksi === 6) {
+      bot.setControlState('left', true)
+      setTimeout(() => bot.setControlState('left', false), 400)
+    } else if (aksi === 7) {
+      bot.setControlState('right', true)
+      setTimeout(() => bot.setControlState('right', false), 400)
     }
   }, 10000 + Math.random() * 10000)
 }
