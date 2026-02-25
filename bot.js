@@ -14,8 +14,8 @@ app.listen(PORT, '0.0.0.0', () => {
 })
 
 const botArgs = {
-  host: '147.185.221.28',
-  port: 17730,
+  host: 'mother-elsewhere.gl.joinmc.link',
+  port: 25565,
   username: 'RegaBot',
   version: '1.21'
 }
@@ -175,3 +175,4 @@ async function goToSleep() {
 }
 
 createBot()
+
